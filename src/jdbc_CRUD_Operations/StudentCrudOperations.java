@@ -77,6 +77,10 @@ public class StudentCrudOperations {
     // VIEW ALL
     public static void viewAllStudents(Connection con) throws SQLException {
         String sql = "SELECT * FROM student";
+        
+        //Statement stmt=con.createStatement();
+        //ResultSet rs=stmt.executeQuery(sql);
+        
         ResultSet rs = con.createStatement().executeQuery(sql);
         System.out.println("\nAll Students:");
         while (rs.next()) {
@@ -88,7 +92,7 @@ public class StudentCrudOperations {
     public static void viewStudentById(Connection con, Scanner sc) throws SQLException {
         System.out.print("Enter ID: ");
         int id = sc.nextInt();
-        String sql = "SELECT * FROM student WHERE id = ?";
+        String sql = "SELECT * FROM student WHERE id = ?"; 
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, id);
         ResultSet rs = ps.executeQuery();

@@ -14,34 +14,34 @@ public class StudentDAO {
     private JdbcTemplate jdbc;
 
     public void insert(Student s) {
-        String sql = "INSERT INTO student (id, name, age, fees) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO tstudent (id, name, age, fees) VALUES (?, ?, ?, ?)";
         jdbc.update(sql, s.getId(), s.getName(), s.getAge(), s.getFees());
         System.out.println("Inserted student.");
     }
 
     public void updateById(int id, int newAge, int newFees) {
-        String sql = "UPDATE student SET age = ?, fees = ? WHERE id = ?";
+        String sql = "UPDATE tstudent SET age = ?, fees = ? WHERE id = ?";
         jdbc.update(sql, newAge, newFees, id);
         System.out.println("Updated student.");
     }
 
     public void deleteById(int id) {
-        String sql = "DELETE FROM student WHERE id = ?";
+        String sql = "DELETE FROM tstudent WHERE id = ?";
         jdbc.update(sql, id);
         System.out.println("Deleted student.");
     }
 
     public List<Student> getAll() {
-        return jdbc.query("SELECT * FROM student", new StudentRowMapper());
+        return jdbc.query("SELECT * FROM tstudent", new StudentRowMapper());
     }
 
     public Student getById(int id) {
-        String sql = "SELECT * FROM student WHERE id = ?";
+        String sql = "SELECT * FROM tstudent WHERE id = ?";
         return jdbc.queryForObject(sql, new StudentRowMapper(), id);
     }
 
     public List<Student> getByName(String name) {
-        String sql = "SELECT * FROM student WHERE name = ?";
+        String sql = "SELECT * FROM tstudent WHERE name = ?";
         return jdbc.query(sql, new StudentRowMapper(), name);
     }
 
